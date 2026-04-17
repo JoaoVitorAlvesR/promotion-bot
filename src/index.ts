@@ -2,9 +2,17 @@ import { Client, LocalAuth, Message } from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
 import { matchFilter } from "./match-filter";
 import "dotenv/config";
+import notifier from "node-notifier";
 
 if (!process.env.PHONE_NUMBER || !process.env.GROUP_ID) {
   throw new Error("Variáveis de ambiente não definidas");
+}
+
+function notify(msg: string) {
+  notifier.notify({
+    title: "Produto encontrado!",
+    message: msg,
+  });
 }
 
 const PHONE_NUMBER = process.env.PHONE_NUMBER!;
@@ -23,7 +31,6 @@ client.on("qr", (qr) => {
 
 client.on("ready", async () => {
   console.log("✅ Bot conectado!");
-
   const contact = await client.getNumberId(PHONE_NUMBER);
 
   if (contact) {
@@ -49,9 +56,10 @@ client.on("message", async (msg: Message) => {
       groupName = chat.name;
     } catch {}
 
-    const message = `
-🔥 ${filter.name} encontrado!
-💰 R$ ${price}
+    console.log("achado", filter.name);
+
+    notify(filter.name);
+    const message = `🔥 ${filter.name} encontrado!
 📦 ${msg.body}
 📍 ${groupName}
     `;

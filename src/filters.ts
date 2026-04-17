@@ -2,27 +2,27 @@ import { Filter } from "./types";
 
 export const filters: Filter[] = [
   {
-    name: "TV",
-    required: ["tv", "samsung", "55", "neo", "qled"],
-    // oneOf: ["55", "qled", "neo"],
-    maxPrice: 5000,
-  },
-  {
     name: "Notebook ASUS",
     required: ["notebook"],
     oneOf: ["asus", "acer", "dell"],
-    maxPrice: 3000,
+    maxPrice: 5000,
   },
   {
     name: "Cooktop",
     required: ["cooktop"],
     oneOf: ["fischer", "brastemp", "electrolux"],
-    maxPrice: 1500,
+    maxPrice: 2000,
   },
-  // {
-  //   name: "teste",
-  //   required: ["ps5"],
-  //   // oneOf: ["fischer", "brastemp", "electrolux"],
-  //   maxPrice: 5000,
-  // },
+  {
+    name: "Controle de ps5",
+    required: ["controle"],
+    oneOf: ["PS5", "dualsense", "sony", "playstation 5"],
+    maxPrice: 500,
+  },
+  {
+    name: "Cadeira",
+    required: ["cadeira", "ergonômica"],
+    oneOf: ["reclinável", "escritório"],
+    maxPrice: 2500,
+  },
 ];
